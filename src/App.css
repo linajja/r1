@@ -44,4 +44,12 @@
 .kates {
   list-style-type: none;
   color: blue;
+
+}
+
+.color-mark{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  background-color: transparent;
 }
