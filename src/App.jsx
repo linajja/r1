@@ -1,5 +1,6 @@
 import './App.css';
 import Car from './Components/002/Car';
+import Tree from './Components/002/Tree';
 
 function App() {
     return (
@@ -12,6 +13,9 @@ function App() {
                     <Car price={100} cubeSize="50px" maker="Volvo" color='red' size='15' font="Franklin Gothic Medium" colorCube="red"></Car>
 
                     <Car price={500} cubeSize="50px" maker="MB" color='yellow' size='50' font="Segoe UI" colorCube="yellow"></Car>
+                    <Tree size={8}></Tree>
+                    <Tree size={1}></Tree>
+                    <Tree size={5}></Tree>
                 
             </header>
         </div>
