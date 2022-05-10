@@ -7,5 +7,4 @@ function Tree(props) {
     }
     return null;
 }
-s;
 export default Tree;
