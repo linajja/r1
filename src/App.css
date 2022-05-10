@@ -53,3 +53,25 @@
   display: flex;
   background-color: transparent;
 }
+
+.circle {
+
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+
+}
+
+.tr{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  border: 1px solid gray;
+}
+
+.bl{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  border: 1px solid gray;
+}
