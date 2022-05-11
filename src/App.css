@@ -75,3 +75,11 @@
   justify-content: flex-start;
   border: 1px solid gray;
 }
+.rainbow {
+  width: 100vw;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    margin: 0 -5px;
+}
