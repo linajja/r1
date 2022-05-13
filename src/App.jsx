@@ -56,7 +56,7 @@ function App() {
                         <div
                             className="sq red"
                             key={i}
-                            style={{ background: randomColor() }}
+                            style={{ background: s }}
                         >
                             {s}
                         </div>
