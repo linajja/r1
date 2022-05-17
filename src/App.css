@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -134,4 +135,81 @@
        background-color: crimson;
      }
    }
- 
+ .small {
+   font-size: 10px;
+ }
+ .big {
+   font-size: 50px;
+ }
+ .kvadratas{
+   display: flex;
+  justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+   height: 300px;
+   height: 300px;
+   border-color: white;
+   background-color: green;
+   border-radius:unset;
+ }
+   .kvadratas1 {
+     margin: 20px 20px;
+     width: 200px;
+     height: 200px;
+   }
+   .apskritimas {
+      display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 20px 20px;
+     height: 100px;
+     width: 100px;
+     border-radius: 50%;
+   }
+
+     .letters {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+
+   .circle{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     border-color: randomColor();
+     border-style:dashed;
+     border-width: 10px;
+     background: white;
+     
+   }
+
+     .apskritimas1 {
+      position: absolute;
+        display: flex;
+        justify-content: flex-start;
+        align-items:flex-start;
+        width: 100px;
+        height: 100px;
+        border: 2px dotted white;
+        border-radius: 50%;
+
+     }
+
+    .kvadratas2 {
+    display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 2px dotted white;
+      width: 400px;
+      height: 400px;
+      transition: all 0.7s;
+      position: relative;
+    }
+
+        .clickable {
+          cursor: pointer;
+          transition: all 0.7s;
+        }
