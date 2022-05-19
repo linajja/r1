@@ -3,6 +3,7 @@ import './App.css';
 import Square from './Components/009/Square';
 import axios from 'axios';
 import User2 from './Components/009/User2';
+import Post from './Components/009/Post';
 function App() {
     const [sq, setSq] = useState([]);
     const add = () => setSq((s) => [...s, 1]);
@@ -11,9 +12,17 @@ function App() {
 
     const [users2, setUsers2] = useState([]);
 
+    const [posts, setPosts] = useState([]);
+
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
             setUsers(res.data);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts').then((res) => {
+            setPosts(res.data);
         });
     }, []);
 
@@ -39,6 +48,13 @@ function App() {
                 {users2.map((u) => (
                     <User2 key={u.id} user={u}></User2>
                 ))}
+
+                {posts
+                    .sort((a, b) => b.title.length - a.title.length)
+                    .filter((p) => [7, 3, 4].indexOf(p.id) !== -1)
+                    .map((p, i) => (
+                        <Post key={p.id} post={p} index={i}></Post>
+                    ))}
             </header>
         </div>
     );
