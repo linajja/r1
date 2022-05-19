@@ -1,56 +1,44 @@
+import { useEffect, useState } from 'react';
 import './App.css';
-import Button from './Components/008/Button';
-import MrGreen from './Components/008/MrGreen';
-import { useState } from 'react';
-import Square from './Components/008/Square';
-
+import Square from './Components/009/Square';
+import axios from 'axios';
+import User2 from './Components/009/User2';
 function App() {
-    const [mrGreen, setMrGreen] = useState('green');
-    const [nr, setNr] = useState(1);
-    const [red, setRed] = useState(false);
-    const [src, setSrc] = useState([]);
+    const [sq, setSq] = useState([]);
+    const add = () => setSq((s) => [...s, 1]);
 
-    const clickButton = () => {
-        setMrGreen((s) => (s === 'pink' ? 'green' : 'pink'));
-    };
+    const [users, setUsers] = useState([]);
 
-    const clickPlus = () => {
-        setNr((n) => n + (red ? -1 : 1));
-    };
+    const [users2, setUsers2] = useState([]);
 
-    const clickRed = () => setRed((r) => !r);
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+            setUsers(res.data);
+        });
+    }, []);
 
-    const clickAddSrc = () => setSrc((s) => [...s, 1]);
-
-    const clickMinusSrc = () => setSrc((s) => s.slice(1));
+    useEffect(() => {
+        axios.get('https://dummyjson.com/users?limit=10').then((res) => {
+            console.log(res.data.users);
+            setUsers2(res.data.users);
+        });
+    }, []);
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>
-                    Uplifting
-                    <span
-                        style={{
-                            color: mrGreen,
-                            backgroundColor: red ? 'red' : null,
-                        }}
-                    >
-                        {nr}
-                    </span>
-                </h1>
-                <Button
-                    clickButton={clickButton}
-                    clickPlus={clickPlus}
-                    clickRed={clickRed}
-                    clickAddSrc={clickAddSrc}
-                    clickMinusSrc={clickMinusSrc}
-                ></Button>
-                <MrGreen mrGreen={mrGreen}></MrGreen>
+                <h1>USE eFFeCt</h1>
+
+                <button onClick={add}>add</button>
                 <div className="square-garden">
-                    {src.map((_, i) => (
-                        <Square key={i}></Square>
+                    {sq.map((_, i) => (
+                        <Square key={i} i={i}></Square>
                     ))}
                 </div>
+
+                {users2.map((u) => (
+                    <User2 key={u.id} user={u}></User2>
+                ))}
             </header>
         </div>
     );
