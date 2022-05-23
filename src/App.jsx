@@ -1,62 +1,88 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import Square from './Components/009/Square';
-import axios from 'axios';
-import User2 from './Components/009/User2';
-import Post from './Components/009/Post';
+import './bootstrap.css';
+import { useEffect, useState } from 'react';
+
 function App() {
-    const [sq, setSq] = useState([]);
-    const add = () => setSq((s) => [...s, 1]);
+    const [cat, setCat] = useState(null);
 
-    const [users, setUsers] = useState([]);
-
-    const [users2, setUsers2] = useState([]);
-
-    const [posts, setPosts] = useState([]);
+    const [count, setCount] = useState(null);
 
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
-            setUsers(res.data);
-        });
+        setCat(localStorage.getItem('katinukas'));
     }, []);
 
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then((res) => {
-            setPosts(res.data);
+    const addCat = () => {
+        localStorage.setItem('katinukas', 'Vardu Pilkis');
+        setCat('Vardu Pilkis');
+    };
+
+    const removeCat = () => {
+        localStorage.removeItem('katinukas');
+        setCat(null);
+    };
+
+    const addOne = () => {
+        setCount((c) => {
+            localStorage.setItem('one', c + 1);
+            return c + 1;
         });
-    }, []);
+    };
 
     useEffect(() => {
-        axios.get('https://dummyjson.com/users?limit=10').then((res) => {
-            console.log(res.data.users);
-            setUsers2(res.data.users);
-        });
+        setCount(parseInt(localStorage.getItem('one') ?? 1));
     }, []);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>USE eFFeCt</h1>
-
-                <button onClick={add}>add</button>
-                <div className="square-garden">
-                    {sq.map((_, i) => (
-                        <Square key={i} i={i}></Square>
-                    ))}
+        <>
+            <div className="cards-container">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="card m-4">
+                                <div className="card-header">{cat}</div>
+                                <div className="card-body">
+                                    <button
+                                        type="button"
+                                        onClick={addCat}
+                                        className="btn btn-outline-primary m-2"
+                                    >
+                                        Add Cat
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={removeCat}
+                                        className="btn btn-outline-danger m-2"
+                                    >
+                                        Remove Cat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                {users2.map((u) => (
-                    <User2 key={u.id} user={u}></User2>
-                ))}
-
-                {posts
-                    .sort((a, b) => b.title.length - a.title.length)
-                    .filter((p) => [7, 3, 4].indexOf(p.id) !== -1)
-                    .map((p, i) => (
-                        <Post key={p.id} post={p} index={i}></Post>
-                    ))}
-            </header>
-        </div>
+            <div className="cards-container">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="card m-4">
+                                <div className="card-header">{count}</div>
+                                <div className="card-body">
+                                    <button
+                                        type="button"
+                                        onClick={addOne}
+                                        className="btn btn-outline-primary m-2"
+                                    >
+                                        Add 1
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 

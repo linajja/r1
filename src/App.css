@@ -246,3 +246,18 @@
       
      
     }
+
+        .cards-container {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+
+
+        p,
+        label {
+          font: 1rem 'Fira Sans', sans-serif;
+        }
+    
+        input {
+          margin: .4rem;
+        }
